@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/server.js"
+    },
+    {
+      "src": "/webhook",
+      "dest": "backend/server.js"
+    },
+    {
+      "src": "/socket.io/(.*)",
+      "dest": "backend/server.js"
+    },
+    {
+      "src": "/health",
+      "dest": "backend/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/dist/$1",
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/dist/index.html"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "mongodb+srv://madushanin790_db_user:uvKvnFitEuE5syHc@cluster0.esm126i.mongodb.net/?appName=Cluster0",
+    "JWT_SECRET": "ubeappa_jwt_secret_key_2024_secure_random_string_change_in_production",
+    "OPENROUTER_API_KEY": "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",
+    "OPENROUTER_MODEL": "mistralai/mistral-7b-instruct:free",
+    "FRONTEND_URL": "https://ubeappa.vercel.app",
+    "PORT": "5000",
+    "NODE_ENV": "production"
+  }
+}
