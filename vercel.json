@@ -1,5 +1,14 @@
 {
   "version": 2,
+  "experimentalServices": {
+    "frontend": {
+      "routePrefix": "/"
+    },
+    "backend": {
+      "entrypoint": "backend/server.js",
+      "routePrefix": "/api"
+    }
+  },
   "builds": [
     {
       "src": "backend/server.js",
